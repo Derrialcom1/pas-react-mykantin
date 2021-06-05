@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from './banner'
 import Nav from './nav'
+import Popular from './populer'
 import Category from './category'
 import {Switch, Route} from 'react-router-dom'
 
@@ -15,8 +16,11 @@ export default function Content() {
             </nav>
             <section className="h-6/10 w-full">
                 <Switch>
-                    <Route path="">
+                    <Route path={`/category/:id`}>
                         <Category/>
+                    </Route>
+                    <Route path="/">
+                        <Popular/>
                     </Route>
                 </Switch>
             </section>

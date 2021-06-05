@@ -8,7 +8,7 @@ function App() {
     <React.Fragment>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/">
             <Layout />
           </Route>
           {/* <Redirect path="*" to="/" /> */}

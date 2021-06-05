@@ -1,22 +1,24 @@
-import axios from "axios"
-import React from "react"
-import { NavLink, useParams } from "react-router-dom"
+import React from "react";
+import {NavLink} from "react-router-dom";
+import axios from "axios";
+import Star from "../../images/navbar/star.png"
 import Popup from 'reactjs-popup'
 
-export default function Category(params) {
+
+export default function Populer() {
     const [populer, setPopuler] = React.useState([])
     const [angka, setAngka] = React.useState(0)
-    let {id} = useParams()
-    const getPopuler = async (id) => {
+
+    const getPopuler = async() => {
         try {
-            const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/8?page=${id}`
-            const response = await axios.get(url)
-            console.log(response)
+            const url = "https://belajar-react.smkmadinatulquran.sch.id/api/populer/all"
+            const response = await  axios.get(url);
+            console.log(response.data.data);
             setPopuler(response.data.data)
         } catch (error) {
             console.log(error)
         }
-    }
+    };
     const nambahNumber = () => {
         setAngka(angka + 1)
     }
@@ -24,17 +26,18 @@ export default function Category(params) {
         setAngka(angka - 1)
     }
     React.useEffect(()=>{
-        getPopuler(id)
-    },[id])
+        getPopuler();
+    }, []);
+
     return(
         <React.Fragment>
             <div className="mt-20 pr-5">
-                <div className=" flex items-center justify-between">
-                    <h1 className='font-extrabold text-2xl'>Populer</h1>
+                <div className="flex items-start">
+                    <h1 className="font-extrabold text-2xl">Populer</h1>
                 </div>
                 <div className="mt-3">
-                    <ul className='flex items-center flex-wrap overflow-auto w-full'>
-                        {populer.map((dt, id)=>(
+                    <ul className="flex items-center w-full flex-wrap overflow-auto justify-between">
+                    {populer.map((dt, id)=>(
                             <li className={`flex-none relative w-3/10 h-full m-3`} key={id}>
                                 <Popup trigger={
                                     <img className={`rounded-xl w-full h-32`} src={dt.image} alt={dt.name} />
@@ -52,9 +55,9 @@ export default function Category(params) {
                                             <p className="font-bold mt-5">{`stok: ${dt.jumlah}`}</p>
                                             <div className="mt-5 flex items-center justify-between">
                                                 <div className="flex items-center justify-between bg-yellow-100 rounded-lg p-1">
-                                                    <button disabled={angka == 0} onClick={minusNumber} className={`text-xl bg-white p-2 rounded-lg`}>-</button>
+                                                    <button disabled={angka === 0} onClick={minusNumber} className={`text-xl bg-white p-2 rounded-lg`}>-</button>
                                                     <p className="m-3">{angka}</p>
-                                                    <button disabled={angka == dt.jumlah} onClick={nambahNumber} className='text-xl bg-white p-2 rounded-lg'>+</button>
+                                                    <button disabled={angka === dt.jumlah} onClick={nambahNumber} className='text-xl bg-white p-2 rounded-lg'>+</button>
                                                 </div>
                                                 <button className="bg-yellow-300 font-bold p-4 rounded-xl">Tambah Pesanan</button>
                                             </div>

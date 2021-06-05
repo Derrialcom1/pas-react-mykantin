@@ -35,9 +35,11 @@ export default function Nav() {
                     <ul className="flex items-center justify-between w-full flex-nowrap overflow-auto">
                         <li className="flex-none h-32 relative m-5">
                             <img className="rounded-xl w-full h-32" src={semua} alt={semua} />
-                            <p style={{background:'rgba(1,1,1,0.5)'}} className="absolute z-10 rounded-xl h-full flex items-center justify-center top-0 botton-0 left-0 right-0  text-white font-black">
-                                Semua
-                            </p>
+                            <NavLink to="/">
+                                <p style={{background:'rgba(1,1,1,0.5)'}} className="absolute z-10 rounded-xl h-full flex items-center justify-center top-0 botton-0 left-0 right-0  text-white font-black">
+                                    Semua
+                                </p>
+                            </NavLink>
                         </li>
                         {category.map((dt, index) => (
                             <li key={index} className={`flex-none ${category.length === 3 ? 'w-1/4' : 'w-2/10'} h-32 relative m-5`}>
